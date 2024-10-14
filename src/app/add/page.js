@@ -7,12 +7,14 @@ export default function Form() {
     const [inputValue, setInputValue] = useState('');
     async function handleSubmit(e) {
         e.preventDefault();
+        if (inputValue.replace(/^\s+|\s+$/g, '')) {
         const supabase = createClient();
         await supabase.from("texts").insert({text: inputValue});
         const response = await supabase.from("texts").delete()
         .order('id', { ascending: true }) 
         .limit(1);
         console.log(response)
+        }
 
     }
   return (
