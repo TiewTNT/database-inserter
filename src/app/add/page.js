@@ -5,9 +5,15 @@ import React, { useState } from 'react';
 
 export default function Form() {
     const [inputValue, setInputValue] = useState('');
-    async function handleSubmit() {
+    async function handleSubmit(e) {
+        e.preventDefault();
         const supabase = createClient();
-        await supabase.from("Texts").insert({text: inputValue});
+        await supabase.from("texts").insert({text: inputValue});
+        const response = await supabase.from("texts").delete()
+        .order('id', { ascending: true }) 
+        .limit(1);
+        console.log(response)
+
     }
   return (
     <form>

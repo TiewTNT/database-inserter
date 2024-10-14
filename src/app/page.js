@@ -5,7 +5,7 @@ export default async function Home() {
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
   
-    const { data: inserts } = await supabase.from('Texts').select()
+    const { data: inserts } = await supabase.from('texts').select()
   
     return (
       <ul>
