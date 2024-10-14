@@ -10,7 +10,7 @@ export default async function Home() {
     return (
       <ul>
         {inserts?.map((insert) => (
-          <li>{insert.text}</li>
+          <li key={insert.id}>{insert.text}</li>
         ))}
       </ul>
     )
