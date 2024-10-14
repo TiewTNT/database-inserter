@@ -11,6 +11,7 @@ export default async function Home() {
   
     return (
     <>
+        <Link href="/add" className="bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg">Submit your own message</Link>
       <ol>
         {inserts?.map((insert) => (
           <li key={insert.id} className="bg-lime-600 p-4 m-3 rounded-md text-white font-semibold text-lg">
@@ -23,7 +24,6 @@ export default async function Home() {
         </li>
         ))}
       </ol>
-      <Link href="/add" className="bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg">Submit your own message</Link>
     </>
     )
 }
