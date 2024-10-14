@@ -12,10 +12,10 @@ export default async function Home() {
     <>
       <ul>
         {inserts?.map((insert) => (
-          <li key={insert.id}>{insert.text}</li>
+          <li key={insert.id} className="bg-lime-600 p-4 m-3 rounded-md text-white font-semibold text-lg">{insert.text}</li>
         ))}
       </ul>
-      <Link href="/add">Submit your own message</Link>
+      <Link href="/add" className="bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg">Submit your own message</Link>
     </>
     )
 }
