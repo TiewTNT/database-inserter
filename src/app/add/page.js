@@ -16,9 +16,12 @@ export default function Form() {
 
     }
   return (
+    <>
     <form>
         <input value={inputValue} onChange={() => {setInputValue(event.target.value);}}></input>
         <button onClick={handleSubmit}>Submit</button>
     </form>
+    <a href="../">See your submission</a>
+    </>
     )
 }
