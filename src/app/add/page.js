@@ -7,13 +7,16 @@ export default function Form() {
     const [inputValue, setInputValue] = useState('');
     async function handleSubmit(e) {
         e.preventDefault();
-        if (inputValue.replace(/^\s+|\s+$/g, '')) {
-        const supabase = createClient();
-        await supabase.from("texts").insert({text: inputValue});
-        const response = await supabase.from("texts").delete()
-        .order('id', { ascending: true }) 
-        .limit(1);
-        console.log(response)
+        if (inputValue.replace(/^\s+|\s+$/g, '') && inputValue.length <= 150) {
+            const supabase = createClient();
+            await supabase.from("texts").insert({text: inputValue.trim()});
+            const response = await supabase.from("texts").delete()
+            .order('id', { ascending: true }) 
+            .limit(1);
+            console.log(response)
+        }
+        if (inputValue.length > 150) {
+            alert("Length exceeded limit (maximum of 150 characters)")
         }
 
     }
