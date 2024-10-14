@@ -15,7 +15,7 @@ export default async function Home() {
           <li key={insert.id}>{insert.text}</li>
         ))}
       </ul>
-      <Link href="/add">Sumbit your own message</Link>
+      <Link href="/add">Submit your own message</Link>
     </>
     )
 }
