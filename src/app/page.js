@@ -16,7 +16,8 @@ export default function Home() {
     
     const handleInserts = (payload) => {
         // alert('yey'+String(payload))
-        location.reload();
+        // location.reload();
+        fetchData()
     }
     supabase.channel('texts').on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'texts'}, handleInserts).subscribe()
     async function fetchData() {
