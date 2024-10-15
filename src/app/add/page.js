@@ -14,7 +14,7 @@ export default function Form() {
     }
     supabase.channel('texts').on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'texts'}, handleInserts).subscribe()
     async function fetchData() {
-        const { data : inserts2 } = await supabase.from('texts').select()
+        const { data : inserts2 } = await supabase.from('texts').select().order('id', { ascending: true })
         setInserts(inserts2)
     }
     useEffect(() => {
