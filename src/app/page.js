@@ -3,8 +3,7 @@
 import { createClient } from '@/utils/supabase/client'
 
 import Link from 'next/link'
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 export default function Home() {
