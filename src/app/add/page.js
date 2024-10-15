@@ -39,8 +39,8 @@ export default function Form() {
   return (
     <>
     <form>
-        <textarea className="p-2 mt-5 flex justify-center items-center mx-auto my-auto block h-64 w-64 border rounded-md" value={inputValue} onChange={() => {setInputValue(event.target.value);}}></textarea>
-        <button onClick={handleSubmit} className="p-3 mt-3 flex justify-center items-center mx-auto my-auto block h-32 w-32 rounded-full text-2xl bg-lime-500 active:bg-lime-600 text-white font-bold">Submit</button>
+        <textarea aria-label="text input" className="p-2 mt-5 flex justify-center items-center mx-auto my-auto block h-64 w-64 border rounded-md" value={inputValue} onChange={() => {setInputValue(event.target.value);}}></textarea>
+        <button aria-label="submit" onClick={handleSubmit} className="p-3 mt-3 flex justify-center items-center mx-auto my-auto block h-32 w-32 rounded-full text-2xl bg-lime-500 active:bg-lime-600 text-white font-bold">Submit</button>
     </form>
     <a href="../" className="bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg ">See submissions</a>
     
