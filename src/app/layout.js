@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Databse Inserter",
+  title: "Database Inserter",
   description: "Message board but cuztomizable. By everyone.",
 };
 
