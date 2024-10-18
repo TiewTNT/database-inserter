@@ -97,6 +97,12 @@ export default function Form() {
             setInputValue(event.target.value);
           }}
         ></textarea>
+        <input
+          type="file"
+          onChange={(event) => {
+            setInputImage(event.target.files[0]);
+          }}
+        />
         <button
           aria-label="submit"
           onClick={handleSubmit}
@@ -104,12 +110,6 @@ export default function Form() {
         >
           Submit
         </button>
-        <input
-          type="file"
-          onChange={(event) => {
-            setInputImage(event.target.files[0]);
-          }}
-        />
       </form>
       <a
         href="../"
