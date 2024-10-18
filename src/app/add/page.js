@@ -7,6 +7,7 @@ export default function Form() {
     const [inputValue, setInputValue] = useState('');
     const supabase = createClient()
     const [inserts, setInserts] = useState()
+    const [inputImage, setInputImage] = useState();
     
     const handleInserts = (payload) => {
         setInserts(null)
@@ -23,12 +24,32 @@ export default function Form() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        if (inputValue.replace(/^\s+|\s+$/g, '') && inputValue.length <= 150) {
+        if ((inputValue.replace(/^\s+|\s+$/g, '') && inputValue.length <= 150) || inputImage) {
             const supabase = createClient();
-            await supabase.from("texts").insert({text: inputValue.trim()});
-            const response = await supabase.from("texts").delete()
-            .order('id', { ascending: true }) 
-            .limit(1);
+
+            const rowData = (inputImage ?
+                await supabase.from("texts").insert({text: inputValue.trim(), image: true}).select() :
+                await supabase.from("texts").insert({text: inputValue.trim()}).select())
+            
+            const response = await supabase.from("texts").delete().order('id', { ascending: true }) .limit(1).select()
+            const { data, error } = await supabase
+                    .storage
+                    .from('images')
+                    .remove([response.data[0].id.toString() + '.png'])
+            
+            console.log(rowData)
+            const currentId = rowData.data[0].id.toString()
+            console.log(rowData)
+            if (inputImage) {
+                console.log(inputImage)
+                const { data, error } = await supabase
+                    .storage
+                    .from('images')
+                    .upload(currentId + '.png', inputImage, {
+                        cacheControl: '3600',
+                        upsert: false
+                    })
+            }
             console.log(response)
         }
         if (inputValue.length > 150) {
@@ -39,12 +60,13 @@ export default function Form() {
   return (
     <>
     <form>
-        <textarea aria-label="text input" className="p-2 mt-5 flex justify-center items-center mx-auto my-auto block h-64 w-64 border rounded-md" value={inputValue} onChange={() => {setInputValue(event.target.value);}}></textarea>
-        <button aria-label="submit" onClick={handleSubmit} className="p-3 mt-3 flex justify-center items-center mx-auto my-auto block h-32 w-32 rounded-full text-2xl bg-lime-500 active:bg-lime-600 text-white font-bold">Submit</button>
+        <textarea aria-label="text input" className="dark:bg-green-900 dark:text-[#eaeaea] p-2 mt-5 flex justify-center items-center mx-auto my-auto block h-64 w-64 rounded-md" value={inputValue} onChange={(event) => {setInputValue(event.target.value);}}></textarea>
+        <button aria-label="submit" onClick={handleSubmit} className="dark:bg-lime-700 dark:text-[#eaeaea] p-3 mt-3 flex justify-center items-center mx-auto my-auto block h-32 w-32 rounded-full text-2xl bg-lime-500 active:bg-lime-600 text-white font-bold">Submit</button>
+        <input type="file" onChange={(event) => {setInputImage(event.target.files[0]);}}/>
     </form>
-    <a href="../" className="bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg ">See submissions</a>
+    <a href="../" className="dark: dark:bg-green-800 dark:hover:bg-green-700 dark:text-[#eaeaea] bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg ">See submissions</a>
     
-    <p className="bg-lime-600 p-4 m-3 rounded-md text-white font-semibold text-lg">
+    <p className="dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 p-4 m-3 rounded-md text-white font-semibold text-lg">
     {inserts?.at(-1).text.split("\n").map((line, index) => (
             <React.Fragment key={inserts.at(-1).id}>
               {line}
