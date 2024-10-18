@@ -20,11 +20,17 @@ export default function Home() {
       handleInserts
     )
     .subscribe();
+    function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
   async function fetchData() {
     const { data: inserts2 } = await supabase
       .from("texts")
       .select()
       .order("id", { ascending: false });
+    if (inserts2.at(0).image) {
+        await delay(2000);
+    }
     setInserts(inserts2);
   }
   useEffect(() => {
