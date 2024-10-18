@@ -98,7 +98,7 @@ export default function Form() {
           }}
         ></textarea>
         <div className="flex items-center justify-center w-full">
-          <label className="block mx-auto mt-10 text-md py-2 px-4 rounded-lg font-semibold bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800 dark:text-[#eaeaea] text-white cursor-pointer">
+          <label className="block mx-auto mt-10 text-md py-2 px-4 rounded-lg font-semibold dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white cursor-pointer">
             Select a png file
             <input
               type="file"
