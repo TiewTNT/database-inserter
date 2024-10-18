@@ -49,10 +49,15 @@ export default function Form() {
       const supabase = createClient();
 
       const rowData = inputImage
-        ? await supabase
-            .from("texts")
-            .insert({ text: inputValue.trim(), image: true })
-            .select()
+        ? inputImage.name.endsWith(".png")
+          ? await supabase
+              .from("texts")
+              .insert({ text: inputValue.trim(), image: true })
+              .select()
+          : await supabase
+              .from("texts")
+              .insert({ text: inputValue.trim() })
+              .select()
         : await supabase
             .from("texts")
             .insert({ text: inputValue.trim() })
@@ -110,7 +115,9 @@ export default function Form() {
             />
           </label>
         </div>
-        <p className="justify-center items-center text-center dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white rounded-md p-3 m-3 ml-[10%] mr-[10%] mb-10 font-semibold text-lg lg:text-xl">{inputImage ? inputImage?.name : "No file chosen" }</p>
+        <p className="justify-center items-center text-center dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white rounded-md p-3 m-3 ml-[10%] mr-[10%] mb-10 font-semibold text-lg lg:text-xl">
+          {inputImage ? inputImage?.name : "No file chosen"}
+        </p>
         <button
           aria-label="submit"
           onClick={handleSubmit}
