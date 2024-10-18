@@ -97,12 +97,19 @@ export default function Form() {
             setInputValue(event.target.value);
           }}
         ></textarea>
-        <input
-          type="file"
-          onChange={(event) => {
-            setInputImage(event.target.files[0]);
-          }}
-        />
+        <div className="flex items-center justify-center w-full">
+  <label className="block mx-auto mt-10 text-sm py-2 px-4 rounded-lg font-semibold bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800 dark:text-[#eaeaea] text-white cursor-pointer">
+    Select a file
+    <input
+      type="file"
+      onChange={(event) => {
+        setInputImage(event.target.files[0]);
+      }}
+      accept=".png"
+      className="hidden"
+    />
+  </label>
+</div>
         <button
           aria-label="submit"
           onClick={handleSubmit}
