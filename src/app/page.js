@@ -90,7 +90,7 @@ export default function Home() {
                       .publicUrl
                   }
                   width="40%"
-                  className="rounded-lg mx-auto"
+                  className="rounded-lg mx-auto m-3"
                 />
               </li>
             )
