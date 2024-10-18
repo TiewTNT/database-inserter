@@ -44,7 +44,7 @@ export default function Form() {
 
     if (
       (inputValue.replace(/^\s+|\s+$/g, "") && inputValue.length <= 150) ||
-      inputImage
+      (inputImage && inputImage.name.endsWith(".png"))
     ) {
       const supabase = createClient();
 
