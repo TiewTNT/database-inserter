@@ -98,18 +98,19 @@ export default function Form() {
           }}
         ></textarea>
         <div className="flex items-center justify-center w-full">
-  <label className="block mx-auto mt-10 text-sm py-2 px-4 rounded-lg font-semibold bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800 dark:text-[#eaeaea] text-white cursor-pointer">
-    Select a file
-    <input
-      type="file"
-      onChange={(event) => {
-        setInputImage(event.target.files[0]);
-      }}
-      accept=".png"
-      className="hidden"
-    />
-  </label>
-</div>
+          <label className="block mx-auto mt-10 text-md py-2 px-4 rounded-lg font-semibold bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800 dark:text-[#eaeaea] text-white cursor-pointer">
+            Select a png file
+            <input
+              type="file"
+              onChange={(event) => {
+                setInputImage(event.target.files[0]);
+              }}
+              accept=".png"
+              className="hidden"
+            />
+          </label>
+        </div>
+        <p className="justify-center items-center text-center dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white rounded-md p-3 m-3 ml-[10%] mr-[10%] mb-10 font-semibold text-lg lg:text-xl">{inputImage ? inputImage?.name : "No file chosen" }</p>
         <button
           aria-label="submit"
           onClick={handleSubmit}
