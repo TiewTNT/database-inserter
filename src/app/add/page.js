@@ -151,8 +151,7 @@ export default function Form() {
                       .getPublicUrl(inserts.at(-1).id.toString() + ".png").data
                       .publicUrl
                   }
-                  width="40%"
-                  className="rounded-lg mx-auto"
+                  className="rounded-lg mx-auto  w-[40%]"
                 />
 
                 <div class="dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 p-4 text-white lg:p-5">
@@ -184,8 +183,7 @@ export default function Form() {
                   .getPublicUrl(inserts.at(-1).id.toString() + ".png").data
                   .publicUrl
               }
-              width="40%"
-              className="rounded-lg mx-auto"
+              className="rounded-lg mx-auto w-[40%]"
             />
           )
         ) : (

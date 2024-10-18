@@ -69,8 +69,8 @@ export default function Home() {
                         .getPublicUrl(insert.id.toString() + ".png").data
                         .publicUrl
                     }
-                    width="40%"
-                    className="rounded-lg mx-auto"
+
+                    className="rounded-lg mx-auto w-[40%]"
                   />
 
                   <div class="dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 p-4 text-white lg:p-5">
@@ -100,8 +100,7 @@ export default function Home() {
                       .getPublicUrl(insert.id.toString() + ".png").data
                       .publicUrl
                   }
-                  width="40%"
-                  className="rounded-lg mx-auto m-3"
+                  className="rounded-lg mx-auto m-3 w-[40%]"
                 />
               </li>
             )
