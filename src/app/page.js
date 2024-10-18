@@ -24,7 +24,7 @@ export default function Home() {
     const { data: inserts2 } = await supabase
       .from("texts")
       .select()
-      .order("id", { ascending: true });
+      .order("id", { ascending: false });
     setInserts(inserts2);
   }
   useEffect(() => {
