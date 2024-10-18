@@ -8,8 +8,17 @@ import React, { useState, useEffect } from "react";
 export default function Home() {
   const supabase = createClient();
   const [inserts, setInserts] = useState();
-
-  const handleInserts = (payload) => {
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const handleInserts = async (payload) => {
+    const { data: inserts2 } = await supabase
+      .from("texts")
+      .select()
+      .order("id", { ascending: false });
+    if (inserts2.at(0).image) {
+        await delay(2000);
+    }
     fetchData();
   };
   supabase
@@ -20,17 +29,13 @@ export default function Home() {
       handleInserts
     )
     .subscribe();
-    function delay(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      }
+    
   async function fetchData() {
     const { data: inserts2 } = await supabase
       .from("texts")
       .select()
       .order("id", { ascending: false });
-    if (inserts2.at(0).image) {
-        await delay(2000);
-    }
+
     setInserts(inserts2);
   }
   useEffect(() => {
