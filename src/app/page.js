@@ -60,13 +60,13 @@ export default function Home() {
                     alt={
                       supabase.storage
                         .from("images")
-                        .getPublicUrl(insert.id.toString() + ".png").data
+                        .getPublicUrl(insert.id.toString() + "." + insert.image_file_type).data
                         .publicUrl
                     }
                     src={
                       supabase.storage
                         .from("images")
-                        .getPublicUrl(insert.id.toString() + ".png").data
+                        .getPublicUrl(insert.id.toString() + "." + insert.image_file_type).data
                         .publicUrl
                     }
 
@@ -91,13 +91,13 @@ export default function Home() {
                   alt={
                     supabase.storage
                       .from("images")
-                      .getPublicUrl(insert.id.toString() + ".png").data
+                      .getPublicUrl(insert.id.toString() + "." + insert.image_file_type).data
                       .publicUrl
                   }
                   src={
                     supabase.storage
                       .from("images")
-                      .getPublicUrl(insert.id.toString() + ".png").data
+                      .getPublicUrl(insert.id.toString() + "." + insert.image_file_type).data
                       .publicUrl
                   }
                   className="rounded-lg mx-auto m-3 w-[40%]"

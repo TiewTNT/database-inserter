@@ -44,20 +44,15 @@ export default function Form() {
 
     if (
       (inputValue.replace(/^\s+|\s+$/g, "") && inputValue.length <= 150) ||
-      (inputImage && inputImage.name.endsWith(".png"))
+      inputImage
     ) {
       const supabase = createClient();
 
       const rowData = inputImage
-        ? inputImage.name.endsWith(".png")
-          ? await supabase
-              .from("texts")
-              .insert({ text: inputValue.trim(), image: true })
-              .select()
-          : await supabase
-              .from("texts")
-              .insert({ text: inputValue.trim() })
-              .select()
+        ? await supabase
+            .from("texts")
+            .insert({ text: inputValue.trim(), image: true, image_file_type: inputImage.name.split(".").at(-1)})
+            .select()
         : await supabase
             .from("texts")
             .insert({ text: inputValue.trim() })
@@ -71,7 +66,7 @@ export default function Form() {
         .select();
       const { data, error } = await supabase.storage
         .from("images")
-        .remove([response.data[0].id.toString() + ".png"]);
+        .remove([response.data[0].id.toString() + "." + response.data[0].image_file_type]);
 
       console.log(rowData);
       const currentId = rowData.data[0].id.toString();
@@ -80,7 +75,7 @@ export default function Form() {
         console.log(inputImage);
         const { data, error } = await supabase.storage
           .from("images")
-          .upload(currentId + ".png", inputImage, {
+          .upload(currentId + "." + inputImage.name.split(".").at(-1), inputImage, {
             cacheControl: "3600",
             upsert: false,
           });
@@ -104,13 +99,13 @@ export default function Form() {
         ></textarea>
         <div className="flex items-center justify-center w-full">
           <label className="block mx-auto mt-10 text-md py-2 px-4 rounded-lg font-semibold dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white cursor-pointer">
-            Select a png file
+            Select a file
             <input
               type="file"
               onChange={(event) => {
                 setInputImage(event.target.files[0]);
               }}
-              accept=".png"
+              accept="image/*"
               className="hidden"
             />
           </label>
@@ -142,13 +137,13 @@ export default function Form() {
                   alt={
                     supabase.storage
                       .from("images")
-                      .getPublicUrl(inserts.at(-1).id.toString() + ".png").data
+                      .getPublicUrl(inserts.at(-1).id.toString() + "." + inserts.at(-1).image_file_type).data
                       .publicUrl
                   }
                   src={
                     supabase.storage
                       .from("images")
-                      .getPublicUrl(inserts.at(-1).id.toString() + ".png").data
+                      .getPublicUrl(inserts.at(-1).id.toString() + "." + inserts.at(-1).image_file_type).data
                       .publicUrl
                   }
                   className="rounded-lg mx-auto  w-[40%]"
@@ -174,13 +169,13 @@ export default function Form() {
               alt={
                 supabase.storage
                   .from("images")
-                  .getPublicUrl(inserts.at(-1).id.toString() + ".png").data
+                  .getPublicUrl(inserts.at(-1).id.toString() + "." + inserts.at(-1).image_file_type).data
                   .publicUrl
               }
               src={
                 supabase.storage
                   .from("images")
-                  .getPublicUrl(inserts.at(-1).id.toString() + ".png").data
+                  .getPublicUrl(inserts.at(-1).id.toString() + "." + inserts.at(-1).image_file_type).data
                   .publicUrl
               }
               className="rounded-lg mx-auto w-[40%]"
