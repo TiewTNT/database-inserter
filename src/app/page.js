@@ -46,7 +46,7 @@ export default function Home() {
     <>
       <Link
         href="/add"
-        className="dark:bg-green-800 dark:hover:bg-green-700 dark:text-[#eaeaea] bg-green-600 items-center hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg lg:text-2xl 2xl:text-3xl 2xl:m-6 2xl:h-22"
+        className="btn dark: dark:bg-green-800 dark:hover:bg-green-700 dark:text-[#eaeaea] bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg"
       >
         Submit your own message
       </Link>

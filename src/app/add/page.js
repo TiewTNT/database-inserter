@@ -98,7 +98,7 @@ export default function Form() {
           }}
         ></textarea>
         <div className="flex items-center justify-center w-full">
-          <label className="block mx-auto mt-10 text-md py-2 px-4 rounded-lg font-semibold dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white cursor-pointer">
+          <label className="btn hover:bg-[#41d862] dark:hover:bg-lime-600 pt-4 block mx-auto mt-10 text-md py-2 px-4 rounded-lg font-semibold dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white cursor-pointer">
             Select a file
             <input
               type="file"
@@ -110,20 +110,20 @@ export default function Form() {
             />
           </label>
         </div>
-        <p className="justify-center items-center text-center dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white rounded-md p-3 m-3 ml-[10%] mr-[10%] mb-10 font-semibold text-lg lg:text-xl">
+        <p className="justify-center items-center text-center dark:bg-lime-800 dark:text-[#eaeaea] bg-lime-600 text-white rounded-md p-3 m-3 mx-[10%] lg:mx-[20%] 2xl:mx-[30%] mb-10 font-semibold text-lg lg:text-xl">
           {inputImage ? inputImage?.name : "No file chosen"}
         </p>
         <button
           aria-label="submit"
           onClick={handleSubmit}
-          className="dark:bg-lime-700 dark:text-[#eaeaea] p-3 mt-3 flex justify-center items-center mx-auto my-auto block h-32 w-32 rounded-full text-2xl bg-lime-500 active:bg-lime-600 text-white font-bold"
+          className="btn hover:bg-[#41d862] dark:hover:bg-lime-600 dark:bg-lime-700 dark:text-[#eaeaea] p-3 mt-3 flex justify-center items-center mx-auto my-auto block h-32 w-32 rounded-full text-2xl bg-lime-500 active:bg-lime-600 text-white font-bold"
         >
           Submit
         </button>
       </form>
       <a
         href="../"
-        className="dark: dark:bg-green-800 dark:hover:bg-green-700 dark:text-[#eaeaea] bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg "
+        className="btn dark: dark:bg-green-800 dark:hover:bg-green-700 dark:text-[#eaeaea] bg-green-600 hover:bg-green-500 p-3 m-4 flex justify-center rounded-lg text-white text-lg"
       >
         See submissions
       </a>
